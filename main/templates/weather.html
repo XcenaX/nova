@@ -1,0 +1,107 @@
+{% extends "base.html" %}
+{% load static %}
+
+{%block styles %}
+    <title>Weather | Nova</title>
+    <link rel="stylesheet" href="{% static 'css/style.css' %}">
+    <link rel="stylesheet" href="https://mars.nasa.gov/bin/src/insight/insight-weather.css">
+    <script src="{% static 'quickbox/qb/js/qb.js' %}"></script>
+
+
+    <script src="{% static 'js/vendor/modernizr-2.6.2-respond-1.1.0.min.js' %}"></script>
+    <script src="https://code.jquery.com/jquery-3.4.1.min.js"
+        integrity="sha256-CSXorXvZcTkaix6Yvo6HppcZGetbYMGWSFlBw8HfCJo=" crossorigin="anonymous"></script>
+
+    <script src="{% static 'js/marsphotos.js' %}"></script>
+
+    <script type="text/javascript">
+       
+    </script>
+    
+{% endblock %}
+
+{% block title%}
+    <section class="title">
+        <div class="container">
+            <div class="row-fluid">
+                <div class="span6">
+                    <h1>Weahter</h1>
+                </div>
+                <div class="span6">
+                    <ul class="breadcrumb pull-right">
+                        <li><a href="index.html">Home</a> <span class="divider">/</span></li>
+                        <li class="active">Weahter</li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+    </section>
+    <!-- / .title -->
+{% endblock %}
+
+{% block pages %}
+    <li><a href="{% url 'main:index'%}">Home</a></li>
+    <li><a href="{% url 'main:about'%}">About Us</a></li>
+    <li><a href="{% url 'main:services'%}">Services</a></li>
+    <li><a href="{% url 'main:raw_images'%}">Raw Images</a></li>
+    <li class="active"><a href="{% url 'main:weather'%}">Weather</a></li>
+    <li><a href="{% url 'main:blogs'%}">Blog</a></li> 
+    <li><a href="{% url 'main:contact'%}">Contact</a></li>
+{% endblock %}
+
+{% block content %}
+    <div class="container">
+        <div id="InSight-Weather-Observations" class="section" style="margin-bottom:30px;">
+        <h2>Daily Weather Report</h2>
+        <div class="table_wrapper">
+            <div>
+                <table id="weather_observation" class="mb_table" style="width:100%;">
+                    <thead>
+                        <tr>
+                            <th colspan="2" scope="col">Time</th>
+                            <th colspan="3" scope="col" id="temperature_lbl">Air Temperature (<span class="lbl_celsius">°C</span>)</th>
+                            <th colspan="4" scope="col" id="windspeed_lbl">Wind Speed (<span class="lbl_mps">m/s</span>) </th>
+                            <th colspan="3" scope="col" id="pressure_lbl">Pressure (Pa)</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr id="weather_top">
+                            <th scope="row" class="sol">Date</th>
+                            <th scope="row" class="sol">Sol</th>
+                            <td class="temperature max">Max.</td>
+                            <td class="temperature avg">Avg.</td>
+                            <td class="temperature min">Min.</td>
+                            <td class="windspeed max">Max.</td>
+                            <td class="windspeed avg">Avg.</td>
+                            <td class="windspeed min">Min.</td>
+                            <td class="windspeed direction">Direction
+                                <br><span style="font-size:x-small">(most common)</span></td>
+                            <td class="pressure max">Max.</td>
+                            <td class="pressure avg">Avg.</td>
+                            <td class="pressure min">Min.</td>
+                        </tr>
+                        {% for weather in weathers %}
+                            <tr>
+                                <th scope="row" class="sol">{{weather.date}}</th>
+                                <th scope="row" class="sol">{{weather.sol}}</th>
+                                <td class="temperature max"><span class="celsius" style="display: inline;"><nobr>{{weather.at.max}}° C</nobr></span></td>
+                                <td class="temperature avg"><span class="celsius" style="display: inline;"><nobr>{{weather.at.avarage}}° C</nobr></span></td>
+                                <td class="temperature min"><span class="celsius" style="display: inline;"><nobr>{{weather.at.min}}° C</nobr></span></td>
+                                <td class="windspeed max"><span class="mps" style="">{{weather.wind.max}}</span></td>
+                                <td class="windspeed avg"><span class="mps" style="">{{weather.wind.avarage}}</span></td>
+                                <td class="windspeed min"><span class="mps" style="">{{weather.wind.min}}</span></td>
+                                <td class="windspeed point">{{weather.wind.direction}}</td>
+                                <td class="pressure max">{{weather.pre.max}}</td>
+                                <td class="pressure avg">{{weather.pre.avarage}}</td>
+                                <td class="pressure min">{{weather.pre.min}}</td>
+                            </tr>
+                        {% endfor %}
+                        
+                    </tbody>
+                </table>
+            </div>
+        </div>
+        
+    </div>
+    </div>
+{% endblock %}

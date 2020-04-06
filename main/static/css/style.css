@@ -1,0 +1,28 @@
+.boxSelect{
+ background-color: #fff;
+ padding: 20px;
+ 
+
+}
+.select{
+    font-family: "Fjalla One";
+     font-size: 18px;
+    
+}
+
+
+
+#showPhoto{
+    margin-top: 20px;
+}
+
+#selectSol{
+    width: 100%;
+   min-height:45px;
+}
+
+a:hover{
+    transition:0.3s;
+}
+
+ 

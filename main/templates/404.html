@@ -1,0 +1,28 @@
+{% extends "base.html" %}
+{% load static %}
+
+{% block styles %}
+    <title>404 | Nova</title>
+{% endblock %}
+
+{% block pages %}
+    <li><a href="{% url 'main:index'%}">Home</a></li>
+    <li><a href="{% url 'main:about'%}">About Us</a></li>
+    <li><a href="{% url 'main:services'%}">Services</a></li>
+    <li><a href="{% url 'main:raw_images'%}">Raw Images</a></li>
+    <li><a href="{% url 'main:weather'%}">Weather</a></li>
+    <li><a href="{% url 'main:blogs'%}">Blog</a></li> 
+    <li><a href="{% url 'main:contact'%}">Contact</a></li>
+    
+{% endblock %}
+
+{% block content %}
+    <!-- 404 error -->
+    <section id="error" class="container">
+        <h1>404, Page not found</h1>
+        <p>The Page you are looking for doesn't exist or an other error occurred.</p>
+        <a class="btn btn-success" href="index.html">GO BACK TO THE HOMEPAGE</a>
+    </section>
+    <!-- /404 error -->
+
+{% endblock %}

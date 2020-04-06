@@ -1,0 +1,170 @@
+{% extends "base.html" %}
+{% load static %}
+
+{% block styles%}
+    <title>Blog Item | Nova</title>
+{% endblock %}
+
+{% block title%}
+
+{% endblock %}
+
+{% block pages %}
+    <li><a href="{% url 'main:index'%}">Home</a></li>
+    <li><a href="{% url 'main:about'%}">About Us</a></li>
+    <li><a href="{% url 'main:services'%}">Services</a></li>
+    <li><a href="{% url 'main:raw_images'%}">Raw Images</a></li>
+    <li><a href="{% url 'main:weather'%}">Weather</a></li>
+    <li><a href="{% url 'main:blogs'%}">Blog</a></li> 
+    <li><a href="{% url 'main:contact'%}">Contact</a></li>
+    
+{% endblock %}
+
+{% block content %}
+    <section id="about-us" class="container">
+        <div class="row-fluid">
+            <div class="span8">
+                <div class="blog">
+                    <div class="blog-item well" style="margin-top: 45px;">
+                        <a href="#"><h2>{{blog.title}}</h2></a>
+                        <div class="blog-meta clearfix">
+                            <p class="pull-left">
+                              <i class="icon-user"></i> by <a href="#">{{blog.owner.username}}</a> | <i class="icon-calendar"></i> {{blog.pub_date}} | <i class="icon-eye-open"></i> {{blog.views}}
+                          </p>
+                          <p class="pull-right"><i class="icon-comment pull"></i> <a href="#comments">{{blog.comments.all|length}} comments</a></p>
+                      </div>
+                      <p><img src="{{blog.img_url}}" width="100%" alt="" /></p>
+                      <p>{{blog.description}}</p>
+
+                    
+                    <div id="comments" class="comments">
+                        <h4>{{blog.comments.all|length}} Comments</h4>
+                        <div class="comments-list">
+                            {%for comment in blog.comments.all%}
+                                <div class="comment ">
+                                    <div class="pull-left">
+                                        <img class="avatar" src="images/sample/cAvatar1.jpg" alt="" />  
+                                    </div>
+
+                                    <div class="media-body">
+                                        <strong>Posted by <a href="#">{{comment.owner.username}}</a></strong><br>
+                                        <small>{{comment.pub_date}}</small><br>
+                                        <p>{{comment.content}}</p>
+                                    </div>
+                                </div>
+                            {% endfor %}
+                        </div>
+
+                        <!-- Start Comment Form -->
+                        <div class="comment-form">
+                            <h4>Leave a Comment</h4>
+                            <p class="muted">Make sure you enter the (*) required information where indicated. HTML code is not allowed.</p>
+                            <form name="comment-form" id="comment-form" method="post" action="{% url 'main:blog' blog.id%}">{% csrf_token %}
+                                <textarea rows="10" name="content" id="message" required="required" class="input-block-level" placeholder="Message"></textarea>
+                                {%if not user%}
+                                    <button type="submit" class="btn btn-large btn-primary" disabled="true">Submit Comment</button>
+                                    <p style="color:red">Login to leave a comment!</p>
+                                {% else %}
+                                    <button type="submit" class="btn btn-large btn-primary">Submit Comment</button>
+                                {%endif%}
+                            </form>
+                        </div>
+                        <!-- End Comment Form -->
+
+                    </div>
+
+                </div>
+                <!-- End Blog Item -->
+
+            </div>
+        </div>
+        <aside class="span4">
+            
+
+            <div class="widget ads">
+                <div class="row-fluid">
+                    <div class="span6">
+                        <a href="#"><img src="images/ads/ad1.png" alt=""></a>
+                    </div>
+
+                    <div class="span6">
+                        <a href="#"><img src="images/ads/ad2.png" alt=""></a>
+                    </div>
+                </div>
+                <p> </p>
+                <div class="row-fluid">
+                    <div class="span6">
+                        <a href="#"><img src="images/ads/ad3.png" alt=""></a>
+                    </div>
+
+                    <div class="span6">
+                        <a href="#"><img src="images/ads/ad4.png" alt=""></a>
+                    </div>
+                </div>
+            </div>
+            <!-- /.ads -->
+
+            <div class="widget widget-popular">
+                <h3>Popular Posts</h3>
+                <div class="widget-blog-items">
+                    <div class="widget-blog-item media">
+                        <div class="pull-left">
+                            <div class="date">
+                                <span class="month">Jun</span>
+                                <span class="day">24</span>
+                            </div>
+                        </div>
+                        <div class="media-body">
+                            <a href="#"><h5>Duis sed odio sit amet nibh vulputate cursus a sit amet mauris</h5></a>
+                        </div>
+                    </div>
+
+                    <div class="widget-blog-item media">
+                        <div class="pull-left">
+                            <div class="date">
+                                <span class="month">Jun</span>
+                                <span class="day">24</span>
+                            </div>
+                        </div>
+                        <div class="media-body">
+                            <a href="#"><h5>Duis sed odio sit amet nibh vulputate cursus a sit amet mauris</h5></a>
+                        </div>
+                    </div>
+
+                    <div class="widget-blog-item media">
+                        <div class="pull-left">
+                            <div class="date">
+                                <span class="month">Jun</span>
+                                <span class="day">24</span>
+                            </div>
+                        </div>
+                        <div class="media-body">
+                            <a href="#"><h5>Duis sed odio sit amet nibh vulputate cursus a sit amet mauris</h5></a>
+                        </div>
+                    </div>
+
+                </div>                        
+            </div>
+            <!-- End Popular Posts -->        
+
+            <div class="widget">
+                <h3>Blog Categories</h3>
+                <div>
+                    <div class="row-fluid">
+                        <div class="span6">
+                            <ul class="unstyled">
+                                {% for category in blog.category.all%}
+                                <li><a href="{% url 'main:blog_category' category.name%}">{{category.name}}</a></li>
+                                {%endfor%}
+                            </ul>
+                        </div>
+                    </div>
+                </div>                       
+            </div>
+            <!-- End Category Widget -->
+
+        </aside>
+    </div>
+</section>
+{% endblock %}
+

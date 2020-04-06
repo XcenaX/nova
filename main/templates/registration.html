@@ -1,0 +1,93 @@
+{% extends "base.html" %}
+{% load static %}
+
+{%block styles %}
+    <title>Registration | Nova</title>
+{% endblock %}
+
+{% block title%}
+  <section class="title">
+    <div class="container">
+      <div class="row-fluid">
+        <div class="span6">
+          <h1>Registration</h1>
+        </div>
+        <div class="span6">
+          <ul class="breadcrumb pull-right">
+            <li><a href="index.html">Home</a> <span class="divider">/</span></li>
+            <li><a href="#">Pages</a> <span class="divider">/</span></li>
+            <li class="active">Registration</li>
+          </ul>
+        </div>
+      </div>
+    </div>
+  </section>
+  <!-- / .title --> 
+{% endblock %}
+
+{% block pages %}
+    <li><a href="{% url 'main:index'%}">Home</a></li>
+    <li><a href="{% url 'main:about'%}">About Us</a></li>
+    <li><a href="{% url 'main:services'%}">Services</a></li>
+    <li><a href="{% url 'main:raw_images'%}">Raw Images</a></li>
+    <li><a href="{% url 'main:weather'%}">Weather</a></li>
+    <li><a href="{% url 'main:blogs'%}">Blog</a></li> 
+    <li><a href="{% url 'main:contact'%}">Contact</a></li>
+    
+{% endblock %}
+
+{% block content %}
+      <section id="registration-page" class="container">
+    <form class="center" action="{% url 'main:register'%}" method="POST">{% csrf_token %}
+      <fieldset class="registration-form">
+        <div class="control-group">
+          <span style="color:red;font-size:16px">
+              {% if register_error == "1"%}
+                  Такой пользователь уже существует!
+              {% elif register_error == "2"%}
+                  Введенные пароли не совпадают!
+              {% elif register_error == "3"%}
+                  Пароль должен быть не меньше 8 символов
+              {% endif %}
+          </span>
+        </div>
+        <div class="control-group">
+          <!-- Username -->
+          <div class="controls">
+            <input type="text" id="username" name="username" placeholder="Username" class="input-xlarge">
+          </div>
+        </div>
+
+        <div class="control-group">
+          <!-- E-mail -->
+          <div class="controls">
+            <input type="email" id="email" name="email" placeholder="E-mail" class="input-xlarge">
+          </div>
+        </div>
+
+        <div class="control-group">
+          <!-- Password-->
+          <div class="controls">
+            <input type="password" id="password" name="password" placeholder="Password" class="input-xlarge">
+          </div>
+        </div>
+
+        <div class="control-group">
+          <!-- Password -->
+          <div class="controls">
+            <input type="password" id="password_confirm" name="password_confirm" placeholder="Password (Confirm)" class="input-xlarge">
+          </div>
+        </div>
+
+        <div class="control-group">
+          <!-- Button -->
+          <div class="controls">
+            <button class="btn btn-success btn-large btn-block">Register</button>
+          </div>
+        </div>
+      </fieldset>
+    </form>
+  </section>
+  <!-- /#registration-page -->
+{% endblock %}
+

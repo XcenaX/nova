@@ -1,0 +1,365 @@
+<!--блок head-->
+{% block links %}    
+    {% load static %}
+    <head>        
+        <meta name="viewport" content="width=device-width, initial-scale=1" />
+        <link rel="stylesheet" href="{% static 'css/bootstrap.min.css' %}">
+        <link rel="stylesheet" href="{% static 'css/bootstrap-responsive.min.css' %}">
+        <link rel="stylesheet" href="{% static 'css/font-awesome.min.css' %}">
+        <link rel="stylesheet" href="{% static 'css/main.css' %}">
+        <link rel="stylesheet" href="{% static 'css/sl-slide.css' %}">
+        <link rel="stylesheet" href="{% static 'css/footer.min.css' %}">
+
+        <script src="{% static 'js/vendor/modernizr-2.6.2-respond-1.1.0.min.js' %}"></script>
+
+        <!-- Le fav and touch icons -->
+        <link rel="shortcut icon" href="{% static 'images/ico/favicon.ico' %}">
+        
+        <!--в этом блоке пишем стили для каждой странички-->
+
+        <script src="{% static 'js/vendor/jquery-1.9.1.min.js' %}"></script>
+        <script src="{% static 'js/vendor/bootstrap.min.js' %}"></script>
+        <script src="{% static 'js/main.js' %}"></script>
+
+        {% block styles %}
+
+        {% endblock %}
+    </head>
+{% endblock %}
+
+{% block body%}
+    <body>
+    <!--header для каждой странички-->
+        {% block header %}
+             <!--Header-->
+            <header class="navbar navbar-fixed-top" style="width:100%;margin:0px">
+                <div class="navbar-inner">
+                    <div class="container">
+                        <a class="btn btn-navbar" data-toggle="collapse" data-target=".nav-collapse">
+                            <span class="icon-bar"></span>
+                            <span class="icon-bar"></span>
+                            <span class="icon-bar"></span>
+                        </a>
+                        <a id="logo" class="pull-left" href="index.html"></a>
+                        <div class="nav-collapse collapse pull-right" style=" text-align:center">
+                            <ul class="nav">
+                            <!--/ нужно для того чтобы помечать текущую вкладку-->
+                                {% block pages %}
+                                    
+                                {% endblock %}
+                                {% if not user %}
+                                    <li class="login">
+                                        <a data-toggle="modal" id="activate_login" href="#loginForm">Log in</a>
+                                    </li>
+                                    <li class="login">
+                                        <a href="{% url 'main:registration'%}">Register</a>
+                                    </li>
+                                {% else %}
+                                    <li>
+                                        <a>{{user.username}}</a>
+                                    </li>
+                                    <li class="login">
+                                        <form action="{% url 'main:logout'%}" method="post">{% csrf_token %}
+                                            <button class="logout-button" type="submit">Logout</button>
+                                        </form>
+                                    </li>
+                                {% endif %}
+                                {% if user and user.is_admin%}
+                                    <li class="login" id="admin">
+                                        <a href="{% url 'main:admin-panel'%}">Admin Panel</a>
+                                    </li>
+                                {% endif %}
+                            </ul>        
+                        </div><!--/.nav-collapse -->
+                    </div>
+                </div>
+            </header>
+            <!-- /header -->
+            
+        {% endblock %}
+
+        {% block title %}
+
+        {% endblock %}
+        
+        
+        <!--содержимое для каждой странички-->
+        {% block content %}
+            
+        {% endblock %}
+    </body>
+{% endblock %}
+
+{% block footer %}
+
+    <footer id="site_footer">
+        <div class="grid_layout">
+            <section class="upper_footer">
+                <div class="share_newsletter_container">
+                    <div class="share">
+                        <h2>Follow the Mission</h2>
+                        <div class="insight social_icons">
+                            <!-- AddThis Button BEGIN -->
+                            <div class="addthis_toolbox addthis_default_style addthis_32x32_style">
+                                <a class="addthis_button_twitter_follow icon at300b" href="https://twitter.com/LWjbj4SNajEnzkY" target="_blank" title="Follow on Twitter">
+                                    <img alt="twitter" src="https://image.flaticon.com/icons/svg/1409/1409937.svg">
+                                    <span class="addthis_follow_label">Twitter</span></a>
+                                <a class="addthis_button_facebook_follow icon at300b" href="https://www.facebook.com/aknur.tazhibek" target="_blank" title="Follow on Facebook">
+                                    <img alt="facebook" src="https://image.flaticon.com/icons/svg/1384/1384053.svg">
+                                    <span class="addthis_follow_label">Facebook</span></a>
+                                <a class="addthis_button_facebook_follow icon at300b" href="https://ok.ru/profile/566465935693" target="_blank" title="Follow on Facebook">
+                                    <img alt="facebook" src="https://upload.wikimedia.org/wikipedia/commons/thumb/0/0c/Odnoklassniki.svg/584px-Odnoklassniki.svg.png">
+                                    <span class="addthis_follow_label">OK RU</span></a>
+                                <a class="addthis_button_facebook_follow icon at300b" href="https://vk.com/id383089322" target="_blank" title="Follow on Facebook">
+                                    <img alt="facebook" src="https://www.flaticon.com/premium-icon/icons/svg/2504/2504953.svg">
+                                    <span class="addthis_follow_label">Facebook</span></a>
+                                <div class="atclear"></div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="gradient_line"></div>
+            </section>
+            <section class="sitemap">
+                <div class="sitemap_directory" id="sitemap_directory" style="position: relative;">
+                    <div class="sitemap_block">
+                        <div class="footer_sitemap_item">
+                            <h3 class="sitemap_title">
+                            <a href="#">Mission</a>
+                            </h3>
+                            <ul>
+                                <li class="current">
+                                    <div class="global_subnav_container">
+                                        <ul class="subnav">
+                                            <li>
+                                                <a href="#" target="_self">Overview</a>
+                                            </li>
+                                            <li>
+                                                <a href="#" target="_self">Quick Facts</a>
+                                            </li>
+                                            <li>
+                                                <a href="#" target="_self">Science</a>
+                                            </li>
+                                            <li>
+                                                <a href="#" target="_self">Communications</a>
+                                            </li>
+                                            <li>
+                                                <a href="#" target="_self">Teams</a>
+                                            </li>
+
+                                        </ul>
+                                    </div>
+                                </li>
+                            </ul>
+                        </div>
+                    </div>
+                    <div class="sitemap_block">
+                        <div class="footer_sitemap_item">
+                            <h3 class="sitemap_title">
+                            <a href="#">Timeline</a>
+                            </h3>
+                            <ul>
+                                <li class="current">
+                                    <div class="global_subnav_container">
+                                        <ul class="subnav">
+                                            <li>
+                                                <a href="#" target="_self">Overview</a>
+                                            </li>
+                                            <li>
+                                                <a href="#" target="_self">Pre-Launch</a>
+                                            </li>
+                                            <li>
+                                                <a href="#" target="_self">Launch</a>
+                                            </li>
+                                            <li>
+                                                <a href="#" target="_self">Cruise</a>
+                                            </li>
+                                            <li>
+                                                <a href="#" target="_self">Approach</a>
+                                            </li>
+                                            <li>
+                                                <a href="#" target="_self">Landing</a>
+                                            </li>
+                                            <li>
+                                                <a href="#" target="_self">Surface Operations</a>
+                                            </li>
+
+                                        </ul>
+                                    </div>
+                                </li>
+                            </ul>
+                        </div>
+                    </div>
+                    <div class="sitemap_block">
+                        <div class="footer_sitemap_item">
+                            <h3 class="sitemap_title">
+                            <a href="#">Spacecraft</a>
+                            </h3>
+                            <ul>
+                                <li class="current">
+                                    <div class="global_subnav_container">
+                                        <ul class="subnav">
+                                            <li>
+                                                <a href="#" target="_self">About the Lander</a>
+                                            </li>
+                                            <li>
+                                                <a href="#" target="_self">Instruments</a>
+                                            </li>
+                                            <li>
+                                                <a href="#" target="_self">Launch Vehicle</a>
+                                            </li>
+                                            <li>
+                                                <a href="#" target="_self">Getting to Mars</a>
+                                            </li>
+
+                                        </ul>
+                                    </div>
+                                </li>
+                            </ul>
+                        </div>
+                    </div>
+                    <div class="sitemap_block">
+                        <div class="footer_sitemap_item">
+                            <h3 class="sitemap_title">
+                            <a href="#">News &amp; Events</a>
+                            </h3>
+                            <ul>
+                                <li class="current">
+                                    <div class="global_subnav_container">
+                                        <ul class="subnav">
+                                            <li>
+                                                <a href="#" target="_self">News</a>
+                                            </li>
+                                            <li>
+                                                <a href="#" target="_self">Events</a>
+                                            </li>
+                                            <li>
+                                                <a href="#" target="_self">Newsroom</a>
+                                            </li>
+
+                                        </ul>
+                                    </div>
+                                </li>
+                            </ul>
+                        </div>
+                    </div>
+                    <div class="sitemap_block">
+                        <div class="footer_sitemap_item">
+                            <h3 class="sitemap_title">
+                            <a href="#">Multimedia</a>
+                            </h3>
+                            <ul>
+                                <li class="current">
+                                    <div class="global_subnav_container">
+                                        <ul class="subnav">
+                                            <li>
+                                                <a href="#" target="_self">Images</a>
+                                            </li>
+                                            <li>
+                                                <a href="#" target="_self">Raw Images</a>
+                                            </li>
+                                            <li>
+                                                <a href="#" target="_self">Videos</a>
+                                            </li>
+                                            <li>
+                                                <a href="#" target="_self">Webcasts</a>
+                                            </li>
+                                            <li>
+                                                <a href="#" target="_self">More Resources</a>
+                                            </li>
+                                            <li>
+                                                <a href="#" target="_self">Podcast</a>
+                                            </li>
+
+                                        </ul>
+                                    </div>
+                                </li>
+                            </ul>
+                        </div>
+                    </div>
+                    <div class="sitemap_block">
+                        <div class="footer_sitemap_item">
+                            <h3 class="sitemap_title">
+                            <a href="#">Participate</a>
+                            </h3>
+                            <ul>
+                                <li class="current">
+                                    <div class="global_subnav_container">
+                                        <ul class="subnav">
+                                            <li>
+                                                <a href="#" target="_self">Participate</a>
+                                            </li>
+                                            <li>
+                                                <a href="#" target="_self">Classroom Activities</a>
+                                            </li>
+                                            <li>
+                                                <a href="#" target="_self">Seismology in Schools </a>
+                                            </li>
+                                            <li>
+                                                <a href="#" target="_blank">Send Your Name to Mars</a>
+                                            </li>
+
+                                        </ul>
+                                    </div>
+                                </li>
+                            </ul>
+                        </div>
+                    </div>
+
+                </div>
+                <div class="gradient_line"></div>
+            </section>
+            <section class="lower_footer">
+                <div class="nav_container">
+                    <nav>
+                        <ul>
+                            <li>
+                                <a href="{% url 'main:privacy'%}" target="_blank">Privacy</a>
+                            </li>
+                            <li>
+                                <a href="{% url 'main:faq'%}" target="_self">FAQ</a>
+                            </li>
+                            <li>
+                                <a href="#" target="_self">Feedback</a>
+                            </li>
+                            <li>
+                                <a href="#" target="_blank">Image Policy</a>
+                            </li>
+
+                        </ul>
+                    </nav>
+                </div>
+            </section>
+        </div>
+    </footer>
+
+
+    <!--  Login form -->
+    <div class="modal hide fade in" id="loginForm" aria-hidden="false" >
+        <div class="modal-header">
+            <i class="icon-remove" data-dismiss="modal" aria-hidden="true"></i>
+            <h4>Login Form</h4>
+            {% if login_error %}
+                <p style="color:red;font-size:17px">Неправильный логин или email</p>
+            {% endif %}
+        </div>
+        <!--Modal Body-->
+        <div class="modal-body">
+            <form class="form-inline" action="{% url 'main:login'%}" method="post" id="form-login">{% csrf_token %}
+                <input type="text" class="input-small" placeholder="Email or Username" name="email">
+                <input type="password" class="input-small" placeholder="Password" name="password">
+                <button type="submit" class="btn btn-primary">Sign in</button>
+            </form>
+            <a href="#">Forgot your password?</a>
+        </div>
+        <!--/Modal Body-->
+    </div>
+    <!--  /Login form -->
+    
+
+    {% if login_error %}
+        <script type="text/javascript">
+            $("#activate_login").click()
+        </script>
+    {% endif %}
+{% endblock %}

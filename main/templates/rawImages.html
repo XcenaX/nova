@@ -1,0 +1,114 @@
+{% extends "base.html" %}
+{% load static %}
+
+{%block styles %}
+    <title>Portfolio | Nova</title>
+    <link rel="stylesheet" href="{% static 'css/style.css' %}">
+    <script src="{% static 'quickbox/qb/js/qb.js' %}"></script>
+
+
+    <script src="{% static 'js/vendor/modernizr-2.6.2-respond-1.1.0.min.js' %}"></script>
+    <script src="https://code.jquery.com/jquery-3.4.1.min.js"
+        integrity="sha256-CSXorXvZcTkaix6Yvo6HppcZGetbYMGWSFlBw8HfCJo=" crossorigin="anonymous"></script>
+
+    <script src="{% static 'js/marsphotos.js' %}"></script>
+{% endblock %}
+
+{% block title%}
+    <section class="title">
+        <div class="container">
+            <div class="row-fluid">
+                <div class="span6">
+                    <h1>RAW IMAGES FROM ROVERS</h1>
+                </div>
+                <div class="span6">
+                    <ul class="breadcrumb pull-right">
+                        <li><a href="index.html">Home</a> <span class="divider">/</span></li>
+                        <li class="active">Raw Images</li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+    </section>
+    <!-- / .title -->
+{% endblock %}
+
+{% block pages %}
+    <li><a href="{% url 'main:index'%}">Home</a></li>
+    <li><a href="{% url 'main:about'%}">About Us</a></li>
+    <li><a href="{% url 'main:services'%}">Services</a></li>
+    <li class="active"><a href="{% url 'main:raw_images'%}">Raw Images</a></li>
+    <li><a href="{% url 'main:weather'%}">Weather</a></li>
+    <li><a href="{% url 'main:blogs'%}">Blog</a></li> 
+    <li><a href="{% url 'main:contact'%}">Contact</a></li>
+    
+{% endblock %}
+
+{% block content %}
+    <section>
+        <div class="container">
+            <div class="row-fluid">
+                <form action="{% url 'main:raw_images'%}" method="get">
+                    <div class="span4">
+                        <div class="boxSelect">
+                            <h3>Select rover</h3>
+                            <select name="rover" id="selectRover" class="select">
+                                <option value="Curiosity">Curiosity</option>
+                                <option value="Spirit">Opportunity</option>
+                                <option value="Opportunity">Spirit</option>
+                            </select>
+                        </div>
+                    </div>
+                    <div class="span4">
+                        <div class="boxSelect">
+                            <h3>Select camera</h3>
+                            <select name="camera" id="selectCamera" class="select">
+                                <option value="FHAZ">FHAZ</option>
+                                <option value="RHAZ">RHAZ</option>
+                                <option value="MAST">MAST</option>
+                                <option value="CHEMCAM">CHEMCAM</option>
+                                <option value="MAHLI">MAHLI</option>
+                                <option value="MARDI">MARDI</option>
+                                <option value="NAVCAM">NAVCAM</option>
+                            </select>
+                        </div>
+                    </div>
+                    <div class="span4">
+                        <div class="boxSelect">
+                            <h3>Select sol</h3>
+                            <input type="tel" name="sol" id="selectSol" maxlength="4" onkeydown="javascript: return event.keyCode === 8 || event.keyCode === 46 ? true : !isNaN(Number(event.key))"></input>
+                        </div>
+                    </div>
+
+                    <div class="center">
+                        <button class="btn btn-primary btn-large" type="submit" id="showPhoto1">SHOW</button>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </section>
+
+    <section id="portfolio" class="container main">
+        <ul class="gallery col-4" id="marsPhotos">
+            {% for link in links %}
+                <li>
+                    <div class="preview">
+                        <img alt="" src="{{link}}">
+                        <div class="overlay">
+                        </div>
+                        <div class="links">
+                            <a data-toggle="modal" href="{{link}}" class="quickbox" style="width:auto;height:auto;padding:12px"><i class="icon-eye-open" alt=""></i></a>
+                            <a href="#" style="width:auto;height:auto;padding:12px"><i class="icon-link"></i></a>                                
+                        </div>
+                    </div>
+                    <div class="desc">
+                        <h5>Lorem ipsum dolor sit amet</h5>
+                        <small>Portfolio item short description</small>
+                    </div>               
+                </li>
+            {% endfor %}
+        </ul>
+
+    </section>
+    
+{% endblock %}
