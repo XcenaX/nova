@@ -45,7 +45,7 @@
                     {% if blogs%}
                         {% for blog in blogs %}
                             <div class="blog-item well">
-                                <a><h2>{{blog.title}}</h2></a>
+                                <a href="{% url 'main:blog' blog.id%}"><h2>{{blog.title}}</h2></a>
                                 <div class="blog-meta clearfix">
                                     <p class="pull-left">
                                     <i class="icon-user"></i> by <a href="#">{{blog.owner.username}}</a> |  <i class="icon-calendar"></i> Sept 16th, 2012 <i class="icon-eye-open"></i> {{blog.views}}

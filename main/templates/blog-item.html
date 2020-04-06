@@ -105,47 +105,22 @@
             <!-- /.ads -->
 
             <div class="widget widget-popular">
-                <h3>Popular Posts</h3>
-                <div class="widget-blog-items">
+            <h3>Popular Posts</h3>
+            <div class="widget-blog-items">
+                {% for popular_blog in popular_blogs %}
                     <div class="widget-blog-item media">
                         <div class="pull-left">
                             <div class="date">
-                                <span class="month">Jun</span>
-                                <span class="day">24</span>
+                                <span class="day">{{popular_blog.pub_date}}</span>
                             </div>
                         </div>
                         <div class="media-body">
-                            <a href="#"><h5>Duis sed odio sit amet nibh vulputate cursus a sit amet mauris</h5></a>
+                            <a href="{% url 'main:blog' popular_blog.id %}"><h5>{{popular_blog.title}}</h5></a>
                         </div>
                     </div>
-
-                    <div class="widget-blog-item media">
-                        <div class="pull-left">
-                            <div class="date">
-                                <span class="month">Jun</span>
-                                <span class="day">24</span>
-                            </div>
-                        </div>
-                        <div class="media-body">
-                            <a href="#"><h5>Duis sed odio sit amet nibh vulputate cursus a sit amet mauris</h5></a>
-                        </div>
-                    </div>
-
-                    <div class="widget-blog-item media">
-                        <div class="pull-left">
-                            <div class="date">
-                                <span class="month">Jun</span>
-                                <span class="day">24</span>
-                            </div>
-                        </div>
-                        <div class="media-body">
-                            <a href="#"><h5>Duis sed odio sit amet nibh vulputate cursus a sit amet mauris</h5></a>
-                        </div>
-                    </div>
-
-                </div>                        
-            </div>
-            <!-- End Popular Posts -->        
+                {% endfor %}
+            </div>                        
+        </div>        
 
             <div class="widget">
                 <h3>Blog Categories</h3>
