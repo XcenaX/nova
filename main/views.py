@@ -185,6 +185,7 @@ def blog(request, id):
     if not current_blog:
         return redirect(reverse('main:index'))
 
+    popular_blogs = Blog.objects.order_by("-views")[:3]
     user = get_current_user(request)
     if request.method == "POST":
         form = CommentForm(request.POST)
@@ -202,7 +203,8 @@ def blog(request, id):
     
     return render(request, 'blog-item.html', {
         "user": user,
-        "blog": current_blog
+        "blog": current_blog,
+        "popular_blogs": popular_blogs
     })
 
 def category_blogs(request, category):
@@ -211,6 +213,7 @@ def category_blogs(request, category):
     blogs = Blog.objects.filter(category__id=c.id)
 
     categories = Category.objects.all()
+    popular_blogs = Blog.objects.order_by("-views")[:3]
     
     paginator = Paginator(blogs, COUNT_BLOG_ON_PAGE)
 
@@ -223,10 +226,13 @@ def category_blogs(request, category):
         "pages": pages,
         "categories": categories,
         "current_category": c,
+        "popular_blogs": popular_blogs,
     })
 
 def blogs(request):
     blogs = Blog.objects.all()
+
+    popular_blogs = Blog.objects.order_by("-views")[:3]
 
     categories = Category.objects.all()
 
@@ -239,7 +245,8 @@ def blogs(request):
         "user": user,
         "blogs": paginated_blogs,
         "pages": pages,
-        "categories": categories
+        "categories": categories,
+        "popular_blogs": popular_blogs,
     })
 
 def career(request):
