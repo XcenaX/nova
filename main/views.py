@@ -331,6 +331,8 @@ def typography(request):
 
 def admin_panel(request):
     user = get_current_user(request)
+    if not user:
+        return redirect(reverse('main:index'))
     if not user.is_admin:
         return redirect(reverse('main:index'))
     categories = Category.objects.all()
