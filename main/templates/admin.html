@@ -35,7 +35,11 @@
     {% if success %}
         <div class="alert alert-dismissable alert-success mb-0 rounded-0" id="success-update">
             <button aria-hidden="true" class="close" id="close" data-dismiss="alert" type="button">×</button>
-            Блог успешно загружен!
+            {% if not saccess%}
+                Блог успешно загружен!
+            {% else %}
+                Категория успешно добавлена!
+            {% endif %}
         </div>
     {% endif %}
 
@@ -75,6 +79,17 @@
                     </div>
                 </div>
                 
+                <button type="submit" class="btn btn-primary m-10">Сохранить</button>
+            </form>
+
+             <form method="post" action="{% url 'main:add_category'%}" class="comment add-blog-form" enctype="multipart/form-data">{% csrf_token %}
+                <h2 class="form-header">Добавить Категорию</h2>
+                <div class="form-block">
+                    <div class="form-group">
+                        <label for="category_name">Название</label>
+                        <input type="text" class="form-control" name="name" id="category_name" aria-describedby="emailHelp" placeholder="Введите название категории">
+                    </div>
+                </div>
                 <button type="submit" class="btn btn-primary m-10">Сохранить</button>
             </form>
             

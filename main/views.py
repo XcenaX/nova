@@ -331,8 +331,11 @@ def typography(request):
 
 def admin_panel(request):
     user = get_current_user(request)
+    if not user.is_admin:
+        return redirect(reverse('main:index'))
     categories = Category.objects.all()
     
+    saccess = get_parameter(request, "saccess")
 
     if request.method == "POST":
         image = request.FILES['preview']
@@ -374,6 +377,7 @@ def admin_panel(request):
     return render(request, 'admin.html', {
         "user": user,
         "categories": categories,
+        "saccess": saccess,
     })
 
 def weather(request):
@@ -390,3 +394,15 @@ def weather(request):
         "user": user,
         "weathers": reversed(weathers)
     })
+
+def add_category(request):
+    user = get_current_user(request)
+
+    if request.method == "POST":
+        name = request.POST["category_name"]
+        category = Category.objects.create(name=name)
+        category.owner = user
+        category.save()
+        return redirect(reverse('main:admin-panel') + "?saccess=true")
+    else:
+        return redirect(reverse('main:index'))
