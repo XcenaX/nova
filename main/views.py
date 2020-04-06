@@ -103,6 +103,7 @@ def login(request):
                 else:
                     return redirect(reverse('main:index') + "?login_error=true")
             else:
+                print("not valid")
                 return redirect(reverse('main:index') + "?login_error=true")
     return redirect(reverse('main:index'))
 
