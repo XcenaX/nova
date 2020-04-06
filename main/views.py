@@ -349,14 +349,14 @@ def admin_panel(request):
                 "categories": categories
             })
         
-        
         c = Category.objects.filter(name=post_category).first()
         
         blog = Blog.objects.create(title=title, description=description, owner=user)
         
         new_img_url = '/home/AKNYR/nova/static/images/blogs/blog'+str(blog.id)+'.jpg'
         with open(new_img_url, 'wb') as handler:
-            handler.write(image)
+            for chunk in image.chunks():
+                handler.write(chunk)
         
         new_img_url = "/static/images/blogs/blog" + str(blog.id) + ".jpg"
         blog.img_url = new_img_url
