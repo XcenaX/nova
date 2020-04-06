@@ -84,10 +84,10 @@
 
              <form method="post" action="{% url 'main:add-category'%}" class="comment add-blog-form" enctype="multipart/form-data">{% csrf_token %}
                 <h2 class="form-header">Добавить Категорию</h2>
-                <div class="form-block">
-                    <div class="form-group">
+                <div>
+                    <div class="form-group" style="width:95%;padding:10px">
                         <label for="category_name">Название</label>
-                        <input type="text" class="form-control" name="name" id="category_name" aria-describedby="emailHelp" placeholder="Введите название категории">
+                        <input type="text" class="form-control" name="name" id="category_name" aria-describedby="emailHelp" placeholder="Введите название категории" style="width:100%">
                     </div>
                 </div>
                 <button type="submit" class="btn btn-primary m-10">Сохранить</button>
