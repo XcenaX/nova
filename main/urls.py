@@ -26,4 +26,5 @@ urlpatterns = [
     path('logout', views.logout, name='logout'),
     path('admin-panel', views.admin_panel, name='admin-panel'),
     path('weather', views.weather, name='weather'),
+    path('add-category', views.add_category, name='add-category'),
 ]
