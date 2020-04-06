@@ -10,7 +10,6 @@ from .modules.hashutils import check_pw_hash, make_pw_hash
 
 from .modules.Weather import Weather
 from .modules.ImagesParser import ImagesParser
-from .modules.fileupload import upload_file, get_file_url
 
 from django.core.paginator import Paginator, EmptyPage, PageNotAnInteger
 
@@ -348,8 +347,12 @@ def admin_panel(request):
         
         blog = Blog.objects.create(title=title, description=description, owner=user)
         
-        file_name = upload_file(image, blog.id)
-        blog.img_url = get_file_url(file_name)
+        new_img_url = '/home/AKNYR/nova/static/images/blogs/blog'+str(blog.id)+'.jpg'
+        with open(new_img_url, 'wb') as handler:
+            handler.write(image)
+        
+        new_img_url = "/static/images/blogs/blog" + str(blog.id) + ".jpg"
+        blog.img_url = new_img_url
         
         blog.category.add(c)
         
