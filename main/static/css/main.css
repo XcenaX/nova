@@ -96,6 +96,10 @@ ul.unstyled>li>a {
     color: white;
 }
 
+#sticky {
+	margin-top:10px;
+	text-align:center;
+}
 
 .popular-date{
     background-color: #2dcc70;
