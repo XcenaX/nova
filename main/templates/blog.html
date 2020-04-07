@@ -117,10 +117,10 @@
             <div class="widget-blog-items">
                 {% for popular_blog in popular_blogs %}
                     <div class="row-fluid" style="position:relative;margin-top:15px">
-                        <div class="span4 popular-date" class="popular-date">
+                        <div class="span4 popular-date">
                             {{popular_blog.pub_date}}
                         </div>
-                        <div class="span8" class="popular-text">
+                        <div class="span8 popular-text">
                             <span>{{popular_blog.title}}</span>
                         </div>
                         <a class="hidden-link" href="{% url 'main:blog' popular_blog.id %}"></a>
