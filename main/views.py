@@ -238,7 +238,7 @@ def blogs(request):
 
     popular_blogs = Blog.objects.order_by("-views")[:3]
 
-    categories = Category.objects.all()
+    categories = Category.objects.all()[:6]
 
     paginator = Paginator(blogs, COUNT_BLOG_ON_PAGE)
 
