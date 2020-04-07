@@ -101,12 +101,12 @@ ul.unstyled>li>a {
     background-color: #2dcc70;
     color: white;
     padding: 5px;
-    width:68% !important;
+    width:100% !important;
     margin: auto !important;
 }
 .popular-text{
     font-size: 11px;
-    width: 68% !important;
+    width: 100% !important;
     margin: auto !important;
     background-color: #dbdbdb !important;
     color: black !important;
