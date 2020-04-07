@@ -347,7 +347,7 @@ def admin_panel(request):
         image = request.FILES['preview']
         title = request.POST["title"]
         description = request.POST["description"]
-        post_category = request.POST["category"]
+        post_categories = request.POST.getlist("category")
         
         if not image.name.endswith(".png") and not image.name.endswith(".jpg"):
             upload_error = "Выберите .jpg или .png формат для картинки!" 
@@ -358,7 +358,10 @@ def admin_panel(request):
                 "categories": categories
             })
         
-        c = Category.objects.filter(name=post_category).first()
+        categories = []
+        for category in post_categories:
+            c = Category.objects.filter(name=category).first()
+            categories.append(c)
         
         blog = Blog.objects.create(title=title, description=description, owner=user)
         
