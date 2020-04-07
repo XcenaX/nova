@@ -135,14 +135,14 @@ ul.unstyled>li>a {
     }
 
     .popular-date{
-        width:50%;
-        margin: auto;
+        width:50% !important;
+        margin: auto !important;
     }
     .popular-text{
-        width: 50%;
-        margin: auto;
-        background-color: #dbdbdb;
-        color: black;
-        text-align: center;
+        width: 50% !important;
+        margin: auto !important;
+        background-color: #dbdbdb !important;
+        color: black !important;
+        text-align: center !important;
     }
 }
