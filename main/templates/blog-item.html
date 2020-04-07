@@ -128,7 +128,7 @@
             <div>
                 <div class="row-fluid">
                     <div>
-                        <ul class="unstyled">
+                        <ul class="unstyled" style="padding-left: 13%;">
                             {% for category in categories%}
                                 <li><a href="{% url 'main:blog_category' category.id%}">{{category.name}}</a></li>
                             {%endfor%}
