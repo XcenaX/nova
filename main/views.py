@@ -208,10 +208,13 @@ def blog(request, id):
         "popular_blogs": popular_blogs
     })
 
-def category_blogs(request, category):
+def category_blogs(request, id):
     blogs = []
-    c = Category.objects.filter(name=category).first()
-    blogs = Blog.objects.filter(category__id=c.id)
+    c = Category.objects.filter(id=id).first()
+    if c is None:
+        return redirect(reverse('main:blogs'))
+
+    blogs = Blog.objects.filter(category__id=id)
 
     categories = Category.objects.all()
     popular_blogs = Blog.objects.order_by("-views")[:3]

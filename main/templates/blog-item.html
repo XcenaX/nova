@@ -129,7 +129,7 @@
                         <div class="span6">
                             <ul class="unstyled">
                                 {% for category in blog.category.all%}
-                                <li><a href="{% url 'main:blog_category' category.name%}">{{category.name}}</a></li>
+                                <li><a href="{% url 'main:blog_category' category.id%}">{{category.name}}</a></li>
                                 {%endfor%}
                             </ul>
                         </div>
