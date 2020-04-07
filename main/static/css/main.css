@@ -82,6 +82,14 @@ ul.unstyled>li {
     padding: 10px;
     display: inline-block;
     width: 30%;
+    text-align: center;
+}
+
+.hidden-link{
+    position: absolute;
+    width: 100%;
+    height: 100%;
+    left: 0;
 }
 
 ul.unstyled>li>a {
