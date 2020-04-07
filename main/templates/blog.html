@@ -113,26 +113,25 @@
         <!-- /.ads -->
 
         <div class="widget widget-popular">
-            <h3>Popular Posts</h3>
+            <h2 style="text-align:center">Popular Posts</h2>
             <div class="widget-blog-items">
                 {% for popular_blog in popular_blogs %}
-                    <div class="widget-blog-item media">
-                        <div class="pull-left">
-                            <div class="date">
-                                <span class="day">{{popular_blog.pub_date}}</span>
-                            </div>
+                    <div class="row-fluid">
+                        <div class="span4 popular-date" class="popular-date">
+                            {{popular_blog.pub_date}}
                         </div>
-                        <div class="media-body">
-                            <a href="{% url 'main:blog' popular_blog.id %}"><h5>{{popular_blog.title}}</h5></a>
+                        <div class="span8" style="padding: 5px;">
+                            <a href="{% url 'main:blog' popular_blog.id %}">{{popular_blog.title}}</a>
                         </div>
                     </div>
                 {% endfor %}
-            </div>                        
+            </div>  
+                                  
         </div>
         <!-- End Popular Posts -->        
 
         <div class="widget">
-            <h3>Blogs Categories</h3>
+            <h2 style="text-align:center">Blogs Categories</h2>
             <div>
                 <div class="row-fluid">
                     <div class="span6">
