@@ -129,7 +129,7 @@
                 <div class="row-fluid">
                     <div>
                         <ul class="unstyled" style="padding-left: 13%;">
-                            {% for category in current_blog.category.all%}
+                            {% for category in blog.category.all%}
                                 <li><a href="{% url 'main:blog_category' category.id%}">{{category.name}}</a></li>
                             {%endfor%}
                         </ul>
