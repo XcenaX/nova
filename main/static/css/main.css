@@ -101,6 +101,9 @@ ul.unstyled>li>a {
     color: white;
     padding: 5px;
 }
+.popular-text{
+    font-size: 11px;
+}
 
 @media (max-width: 767px){
     .modal#loginForm{
@@ -129,5 +132,17 @@ ul.unstyled>li>a {
     }
     .form-group>input{
         width: 100%;
+    }
+
+    .popular-date{
+        width:50%;
+        margin: auto;
+    }
+    .popular-text{
+        width: 50%;
+        margin: auto;
+        background-color: #dbdbdb;
+        color: black;
+        text-align: center;
     }
 }
