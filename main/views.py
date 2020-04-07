@@ -358,11 +358,6 @@ def admin_panel(request):
                 "categories": categories
             })
         
-        categories = []
-        for category in post_categories:
-            c = Category.objects.filter(name=category).first()
-            categories.append(c)
-        
         blog = Blog.objects.create(title=title, description=description, owner=user)
         
         new_img_url = '/home/AKNYR/nova/static/images/blogs/blog'+str(blog.id)+'.jpg'
@@ -373,7 +368,10 @@ def admin_panel(request):
         new_img_url = "/static/images/blogs/blog" + str(blog.id) + ".jpg"
         blog.img_url = new_img_url
         
-        blog.category.add(c)
+        for category in post_categories:
+            c = Category.objects.filter(name=category).first()
+            blog.category.add(c)
+        
         
         blog.save()
         return render(request, 'admin.html', {
