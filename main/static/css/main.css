@@ -96,13 +96,22 @@ ul.unstyled>li>a {
     color: white;
 }
 
+
 .popular-date{
     background-color: #2dcc70;
     color: white;
     padding: 5px;
+    width:68% !important;
+    margin: auto !important;
 }
 .popular-text{
     font-size: 11px;
+    width: 68% !important;
+    margin: auto !important;
+    background-color: #dbdbdb !important;
+    color: black !important;
+    text-align: center !important;
+    padding: 5px;
 }
 
 @media (max-width: 767px){
@@ -134,16 +143,5 @@ ul.unstyled>li>a {
         width: 100%;
     }
 
-    .popular-date{
-        width:68% !important;
-        margin: auto !important;
-    }
-    .popular-text{
-        width: 68% !important;
-        margin: auto !important;
-        background-color: #dbdbdb !important;
-        color: black !important;
-        text-align: center !important;
-        padding: 5px;
-    }
+    
 }
