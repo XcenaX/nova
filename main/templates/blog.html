@@ -3,6 +3,38 @@
 
 {%block styles %}
     <title>Blog | Nova</title>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.1.1/jquery.min.js"></script>
+<script>
+$(function() { // document ready
+	if ($('#sticky').length) { // make sure "#sticky" element exists
+		var el = $('#sticky');
+		var stickyTop = $('#sticky').offset().top; // returns number
+		var stickyHeight = $('#sticky').height();
+
+		$(window).scroll(function() { // scroll event
+			var limit = $('#footer').offset().top - stickyHeight - 20;
+
+			var windowTop = $(window).scrollTop(); // returns number
+
+			if (stickyTop < windowTop) {
+				el.css({
+					position: 'fixed',
+					top: 0
+				});
+			} else {
+				el.css('position', 'static');
+			}
+
+			if (limit < windowTop) {
+				var diff = limit - windowTop;
+				el.css({
+					top: diff
+				});
+			}
+		});
+	}
+});
+</script>
 {% endblock %}
 
 {% block title%}
@@ -112,7 +144,7 @@
                 <div>
                     <div class="row-fluid">
                         <div>
-                            <ul class="unstyled" style="padding-left: 13%;">
+                            <ul class="unstyled" >
                                 {% for category in categories%}
                                     <li><a href="{% url 'main:blog_category' category.id%}">{{category.name}}</a></li>
                                 {%endfor%}
