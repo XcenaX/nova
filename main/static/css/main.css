@@ -98,7 +98,8 @@ ul.unstyled>li>a {
 
 #sticky {
 	margin-top:10px;
-	text-align:center;
+    text-align:center;
+    margin-top: 80px;
 }
 
 .popular-date{
