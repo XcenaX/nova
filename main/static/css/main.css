@@ -117,6 +117,8 @@ ul.unstyled>li>a {
     color: black !important;
     text-align: center !important;
     padding: 5px;
+    padding-left: 30px;
+    padding-right: 30px;
     font-weight: 600;
     font-family: sans-serif;
 }
