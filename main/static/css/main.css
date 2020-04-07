@@ -144,5 +144,6 @@ ul.unstyled>li>a {
         background-color: #dbdbdb !important;
         color: black !important;
         text-align: center !important;
+        padding: 5px;
     }
 }
