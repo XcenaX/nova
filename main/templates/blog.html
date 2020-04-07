@@ -8,7 +8,7 @@
     $(function() { // document ready
         if ($('#sticky').length) { // make sure "#sticky" element exists
             var el = $('#sticky');
-            var stickyTop = $('#sticky').offset().top; // returns number
+            var stickyTop = $('#sticky').offset().top+80; // returns number
             var stickyHeight = $('#sticky').height();
 
             $(window).scroll(function() { // scroll event
