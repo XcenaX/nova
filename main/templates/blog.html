@@ -19,7 +19,8 @@
                 if (stickyTop < windowTop) {
                     el.css({
                         position: 'fixed',
-                        top: 0
+                        top: 0,
+                        width: '30%'
                     });
                 } else {
                     el.css('position', 'static');
@@ -28,7 +29,8 @@
                 if (limit < windowTop) {
                     var diff = limit - windowTop;
                     el.css({
-                        top: diff
+                        top: diff,
+                        width: '100%'
                     });
                 }
             });
