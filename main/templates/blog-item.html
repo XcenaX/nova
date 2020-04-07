@@ -124,12 +124,12 @@
         <!-- End Popular Posts -->        
 
         <div class="widget">
-            <h2 style="text-align:center">Blogs Categories</h2>
+            <h2 style="text-align:center">Blog Categories</h2>
             <div>
                 <div class="row-fluid">
                     <div>
                         <ul class="unstyled" style="padding-left: 13%;">
-                            {% for category in categories%}
+                            {% for category in current_blog.category.all%}
                                 <li><a href="{% url 'main:blog_category' category.id%}">{{category.name}}</a></li>
                             {%endfor%}
                         </ul>
